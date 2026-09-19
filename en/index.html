@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS Minifier · Markdown Converter · CJK Typography | Text Formatter Toolbox</title>
+    <meta name="description" content="Free online text formatter toolbox: CSS/HTML minify & beautify, Markdown & HTML conversion, paragraph cleanup, CJK-Latin spacing, full/half-width punctuation, URL & Base64 codecs. Runs 100% in your browser — nothing is uploaded.">
+    <meta name="keywords" content="css minifier,css beautifier,html formatter,html minifier,markdown to html,html to markdown,cjk spacing,pangu spacing,full-width half-width,online text formatter,text tools,json formatter,base64 encode,url encoder,developer tools">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="wxf_m">
+    <meta name="application-name" content="Text Formatter Toolbox">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://woxiaofa.github.io/tool/en/">
+    <link rel="alternate" hreflang="zh-CN" href="https://woxiaofa.github.io/tool/">
+    <link rel="alternate" hreflang="en" href="https://woxiaofa.github.io/tool/en/">
+    <link rel="alternate" hreflang="x-default" href="https://woxiaofa.github.io/tool/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Text Formatter Toolbox">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://woxiaofa.github.io/tool/en/">
+    <meta property="og:title" content="CSS Minifier · Markdown Converter · CJK Typography | Text Formatter Toolbox">
+    <meta property="og:description" content="CSS/HTML minify & beautify, Markdown conversion, paragraph cleanup, CJK spacing, Base64/URL codecs. 100% local — data never leaves your browser.">
+    <meta property="og:image" content="https://woxiaofa.github.io/tool/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Text Formatter Toolbox — CSS / HTML / Markdown / CJK–Latin Typography在线工具">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CSS Minifier · Markdown Converter · CJK Typography | Text Formatter Toolbox">
+    <meta name="twitter:description" content="Free online text formatter. 100% local — nothing is uploaded.">
+    <meta name="twitter:image" content="https://woxiaofa.github.io/tool/og-image.png">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+    <link rel="manifest" href="../manifest.webmanifest">
+    <link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt (AI-readable summary)">
+    <meta name="ai:summary" content="Text Formatter Toolbox is a free, pure front-end online text toolkit: CSS/HTML minify & beautify, Markdown & HTML conversion, paragraph cleanup, CJK-Latin spacing, full/half-width punctuation, URL/Base64/JSON codecs. All processing runs locally in the browser — text is never uploaded.">
+    <script>(function(){var O='https://woxiaofa.github.io/tool/en/';if(/^file:/.test(location.href))return;var T=location.origin+location.pathname.replace(/index\.html$/,'');document.querySelectorAll('link[rel=canonical]').forEach(function(e){e.setAttribute('href',e.getAttribute('href').replace(O,T));});document.querySelectorAll('meta[property="og:url"]').forEach(function(e){e.setAttribute('content',e.getAttribute('content').replace(O,T));});})();</script>
+    <style>
+        :root {
+            --bg: #f4f6fa;
+            --panel: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #4f46e5;
+            --accent-text: #ffffff;
+            --accent-soft: #eef2ff;
+            --ok: #059669;
+            --radius: 12px;
+            --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 8px 24px rgba(16, 24, 40, .06);
+        }
+
+        html[data-theme="dark"] {
+            --bg: #0f172a;
+            --panel: #1e293b;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --border: #334155;
+            --accent: #818cf8;
+            --accent-text: #0f172a;
+            --accent-soft: #263449;
+            --ok: #34d399;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        /* ---------- Header ---------- */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 22px;
+            background: var(--panel);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; }
+
+        .brand .logo {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            display: grid; place-items: center;
+            background: var(--accent);
+            color: var(--accent-text);
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+        .brand h1 { margin: 0; font-size: 18px; letter-spacing: .5px; }
+        .brand p { margin: 0; font-size: 12px; color: var(--muted); }
+
+        /* ---------- Layout ---------- */
+        .layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 18px;
+            padding: 18px 22px 26px;
+            align-items: start;
+        }
+
+        .sidebar {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 8px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 18px;
+        }
+
+        .sidebar .side-title {
+            padding: 6px 10px 10px;
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 1px;
+        }
+
+        .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 9px 10px;
+            margin-bottom: 4px;
+            border: 0;
+            border-radius: 9px;
+            background: transparent;
+            color: var(--text);
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .tab:hover { background: var(--accent-soft); }
+
+        .tab.active {
+            background: var(--accent);
+            color: var(--accent-text);
+            font-weight: 600;
+        }
+
+        .tab .idx {
+            width: 20px; height: 20px;
+            flex: 0 0 20px;
+            display: grid; place-items: center;
+            border-radius: 6px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .tab.active .idx { background: rgba(255, 255, 255, .22); color: var(--accent-text); }
+
+        .workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .card-head {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .card-head h2 { margin: 0; font-size: 15px; }
+        .card-head .desc { margin: 2px 0 0; font-size: 12px; color: var(--muted); font-weight: 400; }
+
+        .card-body { padding: 14px 16px; }
+
+        .group + .group { margin-top: 14px; }
+
+        .group-title {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 8px;
+            letter-spacing: .5px;
+        }
+
+        .group-items { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .btn {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            padding: 7px 14px;
+            border-radius: 8px;
+            font: inherit;
+            cursor: pointer;
+            transition: transform .06s ease, border-color .15s ease, background .15s ease;
+        }
+
+        .btn:hover { border-color: var(--accent); color: var(--accent); }
+        .btn:active { transform: translateY(1px); }
+
+        .btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--accent-text);
+            font-weight: 600;
+        }
+
+        .btn.primary:hover { filter: brightness(1.06); color: var(--accent-text); }
+
+        .btn.ghost { padding: 6px 12px; font-size: 13px; }
+        .btn.mini { padding: 3px 9px; font-size: 12px; border-radius: 6px; }
+
+        /* ---------- Panes ---------- */
+        .panes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .pane { display: flex; flex-direction: column; min-width: 0; }
+
+        .pane-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pane-head .name { font-weight: 600; font-size: 13px; }
+        .pane-head .counter { font-size: 12px; color: var(--muted); margin-right: auto; }
+
+        textarea {
+            width: 100%;
+            height: 46vh;
+            min-height: 260px;
+            resize: vertical;
+            border: 0;
+            outline: none;
+            padding: 14px;
+            background: transparent;
+            color: var(--text);
+            font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+            font-size: 13.5px;
+            line-height: 1.7;
+            tab-size: 4;
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 26px;
+            transform: translateX(-50%) translateY(20px);
+            padding: 9px 18px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: var(--accent-text);
+            font-size: 13px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease, transform .2s ease;
+            z-index: 20;
+        }
+
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        .footnote {
+            padding: 0 22px 20px;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .kbd {
+            border: 1px solid var(--border);
+            border-bottom-width: 2px;
+            border-radius: 5px;
+            padding: 1px 5px;
+            font-size: 11px;
+        }
+
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; padding: 14px; }
+            .sidebar { position: static; }
+            .panes { grid-template-columns: 1fr; }
+        }
+        /* ---------- 无障碍 ---------- */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 99;
+            padding: 10px 16px;
+            background: var(--accent);
+            color: var(--accent-text);
+            border-radius: 0 0 8px 0;
+        }
+        .skip-link:focus { left: 0; }
+
+        /* ---------- SEO / GEO 内容区 ---------- */
+        .seo {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8px 22px 0;
+        }
+        .seo .card { padding: 22px 26px; }
+        .seo-card + .seo-card { margin-top: 16px; }
+        .seo h2 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            line-height: 1.35;
+            scroll-margin-top: 16px;
+        }
+        .seo h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            line-height: 1.4;
+            scroll-margin-top: 16px;
+        }
+        .seo p { margin: 0 0 10px; color: var(--text); }
+        .seo .lead { font-size: 15px; line-height: 1.8; }
+        .seo .lead strong { color: var(--accent); font-weight: 600; }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .feature-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            background: var(--bg);
+        }
+        .feature-card p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+        .feature-card ul { margin: 8px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--muted); }
+
+        .steps { counter-reset: s; margin: 0; padding: 0; list-style: none; }
+        .steps li {
+            position: relative;
+            padding: 0 0 0 34px;
+            margin-bottom: 12px;
+        }
+        .steps li::before {
+            counter-increment: s;
+            content: counter(s);
+            position: absolute;
+            left: 0; top: 1px;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            display: grid; place-items: center;
+            background: var(--accent);
+            color: var(--accent-text);
+            font-size: 12px; font-weight: 700;
+        }
+        .steps li b { display: block; }
+
+        details.faq {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background: var(--bg);
+        }
+        details.faq summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            list-style: none;
+        }
+        details.faq summary::-webkit-details-marker { display: none; }
+        details.faq summary::before { content: '＋'; color: var(--accent); margin-right: 8px; font-weight: 700; }
+        details.faq[open] summary::before { content: '－'; }
+        details.faq > p { margin: 10px 0 0; font-size: 13.5px; color: var(--text); }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .chip {
+            font-size: 12px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--accent-soft);
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ---------- Support ---------- */
+        .sponsor-flex {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .sponsor-info { flex: 1 1 260px; min-width: 220px; }
+        .sponsor-info .en-line { color: var(--muted); font-size: 13px; }
+        .sponsor-qr {
+            flex: 0 0 auto;
+            display: block;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .sponsor-qr img { display: block; width: 168px; height: auto; }
+        .sponsor-qr:hover { box-shadow: var(--shadow); }
+
+        .site-footer {
+            margin-top: 22px;
+            padding: 20px 22px 26px;
+            border-top: 1px solid var(--border);
+            background: var(--panel);
+            font-size: 12.5px;
+            color: var(--muted);
+        }        .site-footer .wrap { max-width: 1100px; margin: 0 auto; }
+        .site-footer a { color: var(--accent); text-decoration: none; }
+        .site-footer a:hover { text-decoration: underline; }
+        .site-footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 10px; }
+
+        @media (max-width: 900px) {
+            .seo { padding: 8px 14px 0; }
+            .seo .card { padding: 18px 16px; }
+        }
+
+    </style>
+</head>
+
+<body>
+<a class="skip-link" href="#tools">Skip to tools</a>
+<header class="app-header" role="banner">
+    <div class="brand">
+        <span class="logo" aria-hidden="true">TF</span>
+        <div>
+            <h1>Text Formatter Toolbox</h1>
+            <p>CSS / HTML / Markdown / CJK–Latin typography · Runs locally, nothing is uploaded</p>
+        </div>
+    </div>
+    <button id="themeBtn" class="btn ghost" aria-label="Toggle dark / light theme">Dark mode</button>
+    <a class="btn ghost" href="../" hreflang="zh-CN" aria-label="切换到中文版">中文</a>
+</header>
+
+<main class="layout">
+    <nav class="sidebar" id="tabs" aria-label="Tool categories"></nav>
+
+    <section class="workspace" id="tools" aria-label="Tool workspace">
+        <div class="card">
+            <div class="card-head">
+                <div>
+                    <h2 id="toolName">CSS Minify / Beautify</h2>
+                    <p class="desc" id="toolDesc"></p>
+                </div>
+                <div class="group-items">
+                    <button class="btn ghost" id="sampleBtn">Load sample</button>
+                    <button class="btn ghost" id="swapBtn">Use result as input</button>
+                </div>
+            </div>
+            <div class="card-body" id="actions"></div>
+        </div>
+
+        <div class="panes">
+            <div class="card pane">
+                <div class="pane-head">
+                    <span class="name">Input</span>
+                    <span class="counter" id="inCount">0 chars</span>
+                    <button class="btn mini" id="pasteBtn">Paste</button>
+                    <button class="btn mini" id="clearIn">Clear</button>
+                </div>
+                <textarea id="input" spellcheck="false" placeholder="Paste the text you want to process here…"></textarea>
+            </div>
+            <div class="card pane">
+                <div class="pane-head">
+                    <span class="name">Output</span>
+                    <span class="counter" id="outCount">0 chars</span>
+                    <button class="btn mini" id="copyBtn">Copy result</button>
+                    <button class="btn mini" id="downBtn">Download</button>
+                </div>
+                <textarea id="output" spellcheck="false" placeholder="The processed result will appear here…"></textarea>
+            </div>
+        </div>
+    </section>
+</main>
+
+<p class="footnote">Press <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> to run the first action of the current tool</p>
+
+<!-- ===================================================================
+     SEO / GEO 内容区
+     目的：原页面只有控件、没有可供搜索引擎和 AI 读取的文本，
+     这里补足「一句话定义 + 分功能说明 + HowTo + FAQ + 隐私」，
+     全部为静态 HTML，未启用 JS 的爬虫也能完整抓取。
+     =================================================================== -->
+<div class="seo">
+
+    <article class="card seo-card" id="intro">
+        <h2>What is Text Formatter Toolbox?</h2>
+        <p class="lead">
+            <strong>Text Formatter Toolbox is a free, open-source, pure front-end online text toolkit</strong>
+            covering <b>CSS minify &amp; beautify</b>, <b>HTML minify &amp; format</b>,
+            <b>Markdown &harr; HTML conversion</b>, <b>paragraph cleanup</b>,
+            <b>CJK&ndash;Latin typography spacing</b>, <b>full/half-width punctuation conversion</b>,
+            plus URL, Base64 and JSON codecs. 5 categories, 30+ one-click actions &mdash;
+            <strong>no sign-up, no limits, no uploads</strong>.
+        </p>
+        <p>
+            Every conversion runs <strong>locally in your browser</strong> with JavaScript &mdash;
+            nothing is ever sent to a server, and no cookies or tracking are involved. It works offline
+            (installable as a PWA). The whole toolbox is a single HTML file with zero dependencies
+            and zero external requests &mdash; save it to disk and it works as a desktop app.
+        </p>
+        <div class="chips">
+            <a class="chip" href="#css">CSS Minify</a>
+            <a class="chip" href="#htmlmd">Markdown</a>
+            <a class="chip" href="#para">Paragraphs</a>
+            <a class="chip" href="#typo">CJK Spacing</a>
+            <a class="chip" href="#common">Base64 / URL</a>
+            <a class="chip" href="#faq">FAQ</a>
+        </div>
+    </article>
+
+    <article class="card seo-card" id="features">
+        <h2>Features: 5 categories of text tools</h2>
+        <div class="feature-grid">
+            <section class="feature-card" id="css">
+                <h3>1. CSS Minify / Beautify</h3>
+                <p>Expand one-line stylesheets into readable form, or strip all whitespace for production.</p>
+                <ul>
+                    <li>CSS minify (comments, whitespace, trailing semicolons)</li>
+                    <li>Format multi-line (one declaration per line)</li>
+                    <li>Format single-line (one rule per line)</li>
+                    <li>Restore original anytime</li>
+                </ul>
+            </section>
+            <section class="feature-card" id="htmlmd">
+                <h3>2. HTML &harr; Markdown</h3>
+                <p>Switch between writing documents and writing web pages, keeping headings, lists and tables.</p>
+                <ul>
+                    <li>HTML &rarr; Markdown</li>
+                    <li>Markdown &rarr; HTML</li>
+                    <li>HTML minify / beautify</li>
+                    <li>Code blocks, tables, task lists supported</li>
+                </ul>
+            </section>
+            <section class="feature-card" id="para">
+                <h3>3. Paragraph Cleanup</h3>
+                <p>Fix messy text copied from Word, PDF or web pages.</p>
+                <ul>
+                    <li>Trim leading / trailing spaces</li>
+                    <li>Merge or remove blank lines</li>
+                    <li>Smart paragraph joining</li>
+                    <li>One sentence per line, dedupe, sort lines</li>
+                </ul>
+            </section>
+            <section class="feature-card" id="typo">
+                <h3>4. CJK&ndash;Latin Typography</h3>
+                <p>Solve the most common Chinese-English mixed-text typesetting issues.</p>
+                <ul>
+                    <li>Auto space between CJK and Latin/digits</li>
+                    <li>Add space after punctuation</li>
+                    <li>Chinese &harr; English punctuation</li>
+                    <li>Full-width &harr; half-width</li>
+                    <li>Letter case: UPPER / lower / Title / Sentence / iNVERSE</li>
+                </ul>
+            </section>
+            <section class="feature-card" id="common">
+                <h3>5. General Conversion</h3>
+                <p>Everyday encoding and escaping utilities for developers and writers.</p>
+                <ul>
+                    <li>JSON beautify / minify</li>
+                    <li>HTML entity escape / unescape</li>
+                    <li>URL encode / decode</li>
+                    <li>Base64 encode / decode (UTF-8 safe)</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="card seo-card" id="how-to">
+        <h2>How to use &mdash; three steps</h2>
+        <ol class="steps">
+            <li><b>Paste text</b>Paste your CSS / HTML / Markdown / plain text into the Input box, or click &ldquo;Load sample&rdquo; to try it.</li>
+            <li><b>Pick an action</b>Switch categories on the left and click a button; or press <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> to run the default action.</li>
+            <li><b>Copy the result</b>The Output box updates live. Click &ldquo;Copy result&rdquo;, or feed the result back as input to chain another action.</li>
+        </ol>
+        <p style="font-size:13px;color:var(--muted)">
+            Tip: feed the result back into the input to chain actions, e.g. &ldquo;Markdown &rarr; HTML&rdquo; then &ldquo;HTML minify&rdquo;.
+        </p>
+    </article>
+
+    <article class="card seo-card" id="faq">
+        <h2>FAQ</h2>
+
+        <details class="faq" open>
+            <summary>Is this text formatter free?</summary>
+            <p>Yes &mdash; completely free and open source under the MIT license. No usage limits, no sign-up, no watermark.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Is my text uploaded to a server?</summary>
+            <p>No. This is a pure front-end tool: every conversion runs in your browser with JavaScript. The page makes no network requests, works offline, and can be installed as a local app.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Will CSS minification break my styles?</summary>
+            <p>Strings, comments and URLs are protected before whitespace removal, so spaces inside <code>content: "a b"</code> are preserved. There is also a &ldquo;Restore original&rdquo; button to roll back anytime.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Which Markdown syntax is supported?</summary>
+            <p>ATX and Setext headings, ordered/unordered/nested lists, task lists, fenced code blocks (with language), blockquotes, horizontal rules, tables with alignment, images, links, autolinks, bold, italic, strikethrough and inline code.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Why add spaces between Chinese and English?</summary>
+            <p>Mixed CJK&ndash;Latin text reads better with a thin gap between Han characters and Latin letters or digits &mdash; a widely recommended Chinese typesetting convention. The tool protects URLs, emails, code blocks and HTML tags, so it never inserts spaces inside them.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Can I convert Chinese punctuation to English punctuation in bulk?</summary>
+            <p>Yes. The CJK&ndash;Latin Typography category offers both directions, covering commas, periods, question/exclamation marks, colons, semicolons and brackets, while skipping decimal points and thousands separators.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Does Base64 support Chinese characters?</summary>
+            <p>Yes. Text is UTF-8 encoded before Base64 and decoded back as UTF-8, so Chinese never turns into mojibake. Line breaks and spaces are ignored when decoding.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Does it work on mobile? Any shortcuts?</summary>
+            <p>Yes, the layout is responsive &mdash; input and output stack vertically on phones. Desktop shortcut: <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> (macOS: <span class="kbd">&#8984;</span> + <span class="kbd">Enter</span>) runs the first action.</p>
+        </details>
+
+        <details class="faq">
+            <summary>Can I use it offline?</summary>
+            <p>Yes. The whole toolbox is a single index.html with no external dependencies &mdash; save it and double-click to run, or install it to your home screen for offline use.</p>
+        </details>
+    </article>
+
+    <article class="card seo-card" id="privacy">
+        <h2>Privacy</h2>
+        <p>
+            No backend API, no analytics scripts, no third-party CDN, no tracking cookies.
+            The only thing stored is your dark/light theme preference in localStorage.
+            Safe for config files, contracts and internal documents.
+        </p>
+    </article>
+
+    <article class="card seo-card" id="sponsor">
+        <h2>Support this project</h2>
+        <div class="sponsor-flex">
+            <div class="sponsor-info">
+                <p>
+                    This toolbox is 100% <b>free, ad-free and open-source</b>; hosting and development
+                    are paid out of the author's own pocket. If it saved you time,
+                    buying the author a coffee is much appreciated &ndash;
+                </p>
+                <p style="margin-top:10px;font-size:13px;color:var(--muted)">
+                    Scan the QR code with Alipay to support &middot; click the code to enlarge
+                </p>
+            </div>
+            <a class="sponsor-qr" href="../assets/alipay-qr.jpg" target="_blank" rel="noopener" title="Alipay QR code (click to enlarge)">
+                <img src="../assets/alipay-qr.jpg" alt="Alipay QR code" width="168" height="252" loading="lazy">
+            </a>
+        </div>
+    </article>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+        <nav aria-label="页脚导航">
+            <a href="#intro">About</a>
+            <a href="#features">Features</a>
+            <a href="#how-to">How to Use</a>
+            <a href="#faq">FAQ</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#sponsor">Support</a>
+            <a href="../llms.txt" rel="nofollow">llms.txt (for AI)</a>
+            <a href="../sitemap.xml" rel="nofollow">Sitemap</a>
+        </nav>
+        <p>
+            Text Formatter Toolbox · Free & open-source online CSS / HTML / Markdown / CJK typography tools · Runs entirely in your browser, nothing is uploaded
+        </p>
+        <p>
+            <a href="https://github.com/woxiaofa/tool" rel="noopener" target="_blank">GitHub Repo</a>
+            · <a href="https://github.com/woxiaofa/tool/blob/main/LICENSE" rel="noopener" target="_blank">MIT License</a>
+            · Last updated <time datetime="2026-09-20">Sep 20, 2026</time>
+        </p>
+    </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+    /* =====================================================================
+     *  Text Formatter Toolbox
+     *  纯前端实现，无任何外部依赖
+     * ===================================================================== */
+
+    /* ------------------ 通用小工具 ------------------ */
+    const $ = id => document.getElementById(id);
+    const inputEl = $('input');
+    const outputEl = $('output');
+
+    // 占位符：用于在处理过程中临时保护片段（代码块、字符串、URL 等）
+    const PH = (tag, n) => '\u0001' + tag + n + '\u0001';
+
+    function escapeHtml(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function protect(list, text) {
+        return PH('S', (list.push(text) - 1));
+    }
+
+    function restoreUnique(list, text) {
+        let t = String(text);
+        let guard = 0;
+        while (/\u0001S(\d+)\u0001/.test(t) && guard++ < 10) {
+            t = t.replace(/\u0001S(\d+)\u0001/g, (m, i) => list[+i]);
+        }
+        return t;
+    }
+
+    /* =====================================================================
+     *  1. CSS：压缩 / 多行格式化 / 单行格式化
+     * ===================================================================== */
+    function cssExtractComments(css) {
+        const list = [];
+        const out = css.replace(/\/\*[\s\S]*?\*\//g, m => {
+            list.push(m.replace(/\s+/g, ' ').trim());
+            return PH('C', list.length - 1);
+        });
+        return { css: out, list };
+    }
+
+    function cssExtractStrings(css) {
+        const list = [];
+        const out = css.replace(/(["'])(?:\\.|(?!\1)[^\n\\])*\1/g, m => {
+            list.push(m);
+            return PH('S', list.length - 1);
+        });
+        return { css: out, list };
+    }
+
+    function cssRestore(text, com, str) {
+        return text.replace(/\u0001S(\d+)\u0001/g, (m, i) => str.list[+i])
+            .replace(/\u0001C(\d+)\u0001/g, (m, i) => com.list[+i]);
+    }
+
+    function cssCompress(src) {
+        const com = cssExtractComments(src);
+        const str = cssExtractStrings(com.css);
+        let c = str.css
+            .replace(/\s+/g, ' ')
+            .replace(/\s*([{}:;,>+~])\s*/g, '$1')
+            .replace(/\(\s+/g, '(')
+            .replace(/\s+\)/g, ')')
+            .replace(/;+}/g, '}')
+            .trim();
+        c = cssRestore(c, com, str);
+        return c;
+    }
+
+    function cssBeautify(src, mode) {
+        const com = cssExtractComments(src);
+        const str = cssExtractStrings(com.css);
+        let css = str.css
+            .replace(/\s+/g, ' ')
+            .replace(/\s*([{}:;,])\s*/g, '$1')
+            .replace(/\(\s+/g, '(')
+            .replace(/\s+\)/g, ')')
+            .replace(/;+/g, ';')
+            .replace(/;}/g, '}')
+            .trim();
+
+        // 「格式(单行)」：每条规则一行，规则内的声明不换行
+        if (mode === 'single') {
+            let s = cssRestore(css, com, str);
+            return s.replace(/\s*\}/g, '}\n').replace(/\n{2,}/g, '\n').trim();
+        }
+
+        // 「格式(多行)」：声明逐行缩进
+        const IND = '  ';
+        const lines = [];
+        let depth = 0, buf = '';
+
+        const push = (t, d) => { if (t) lines.push({ t: t, d: Math.max(0, d) }); };
+
+        const emit = (join, glue) => {
+            const pieces = buf.split(/(\u0001C\d+\u0001)/).filter(p => p.trim() !== '');
+            buf = '';
+            pieces.forEach((p, idx) => {
+                const last = idx === pieces.length - 1;
+                const m = p.trim().match(/^\u0001C(\d+)\u0001$/);
+                if (m) { push(com.list[+m[1]], depth); return; }
+                let t = p.trim();
+                if (last && join) t = glue === 'nospace' ? t + join : (t + ' ' + join).trim();
+                push(t, depth);
+            });
+            if (!pieces.length && join) push(join, depth);
+        };
+
+        css.split(/([{};,])/).forEach(tk => {
+            if (tk === '{') { emit('{'); depth++; return; }
+            if (tk === '}') { emit(); depth--; push('}', depth); return; }
+            if (tk === ';') { emit(';', 'nospace'); return; }
+            if (tk === ',') {
+                if (depth === 0) { emit(',', 'nospace'); return; }   // 选择器并列换行
+                buf += ',';                                          // 属性值内的逗号保持原样
+                return;
+            }
+            buf += tk;
+        });
+        emit();
+
+        let out = lines.map(l => IND.repeat(l.d) + l.t).join('\n');
+        out = cssRestore(out, com, str);
+        return out.replace(/[ \t]+$/gm, '').replace(/\n{3,}/g, '\n\n');
+    }
+
+    /* =====================================================================
+     *  2. HTML：压缩 / 美化
+     * ===================================================================== */
+    const VOID_TAGS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+    const INLINE_TAGS = ['a', 'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'dfn', 'em', 'i', 'kbd', 'label', 'legend', 'mark', 'q', 's', 'samp', 'small', 'span', 'strong', 'sub', 'summary', 'sup', 'time', 'u', 'var'];
+    const RAW_TAGS = ['pre', 'textarea', 'script', 'style'];
+
+    // 抽出 pre / script / style / textarea 标签与注释，避免破坏内部内容
+    function htmlExtractRaw(html) {
+        const list = [];
+        const re = new RegExp('<(' + RAW_TAGS.join('|') + ')\\b[^>]*>[\\s\\S]*?</\\1\\s*>', 'gi');
+        let out = html.replace(re, m => { list.push(m); return PH('R', list.length - 1); });
+        out = out.replace(/<!--[\s\S]*?-->/g, m => { list.push(m); return PH('R', list.length - 1); });
+        return { html: out, list };
+    }
+
+    function htmlRestore(text, raw) {
+        return text.replace(/\u0001R(\d+)\u0001/g, (m, i) => raw.list[+i]);
+    }
+
+    function htmlMinify(src) {
+        // 去掉普通 HTML 注释（保留 IE 条件注释）
+        const cleaned = String(src).replace(/<!--(?!\[if\s)[\s\S]*?-->/g, '');
+        const raw = htmlExtractRaw(cleaned);
+        let html = raw.html
+            .replace(/\s+/g, ' ')
+            .replace(/\s*(<)/g, '<')
+            .replace(/(>)\s*/g, '>')
+            .trim();
+        return htmlRestore(html, raw);
+    }
+
+    function htmlBeautify(src) {
+        const raw = htmlExtractRaw(src);
+        const IND = '  ';
+        let html = raw.html.replace(/\s+/g, ' ');
+        const tokens = html.match(/<[^>]*>|[^<]+/g) || [];
+        const out = [];
+        let depth = 0;
+        const openStack = [];
+        const addLine = t => out.push(IND.repeat(depth) + t);
+
+        tokens.forEach(tk => {
+            tk = tk.trim();
+            if (!tk) return;
+            const pm = tk.match(/^\u0001R(\d+)\u0001$/);
+            if (pm) { addLine(raw.list[+pm[1]]); return; }
+            if (/^<\//.test(tk)) {
+                const name = (tk.match(/^<\/([a-zA-Z][\w-]*)/) || [, ''])[1].toLowerCase();
+                let found = -1;
+                for (let k = openStack.length - 1; k >= 0; k--) { if (openStack[k] === name) { found = k; break; } }
+                if (found >= 0) {
+                    for (let k = openStack.length - 1; k >= found; k--) {
+                        if (INLINE_TAGS.indexOf(openStack[k]) < 0) depth = Math.max(0, depth - 1);
+                    }
+                    openStack.length = found;
+                } else {
+                    depth = Math.max(0, depth - 1);
+                }
+                addLine(tk);
+                return;
+            }
+            if (/^<[!?]/.test(tk)) { addLine(tk); return; }               // DOCTYPE / 处理指令
+            if (/^</.test(tk)) {
+                const name = (tk.match(/^<([a-zA-Z][\w-]*)/) || [, ''])[1].toLowerCase();
+                addLine(tk);
+                const selfClose = /\/\s*>$/.test(tk);
+                if (!selfClose && VOID_TAGS.indexOf(name) < 0) {
+                    openStack.push(name);
+                    if (INLINE_TAGS.indexOf(name) < 0) depth++;
+                }
+                return;
+            }
+            addLine(tk);                                                  // 文本节点
+        });
+        return htmlRestore(out.join('\n').replace(/[ \t]+$/gm, ''), raw);
+    }
+
+    /* =====================================================================
+     *  3. Markdown → HTML
+     * ===================================================================== */
+    function mdToHtml(md) {
+        md = String(md).replace(/\r\n?/g, '\n').replace(/\t/g, '    ');
+        const stash = [];
+        const keep = s => PH('S', stash.push(s) - 1);
+
+        // 围栏代码块
+        md = md.replace(/(^|\n)([`~]{3,})[ \t]*([^\n`]*)\n([\s\S]*?)\n?[ \t]*\2[ \t]*(?=\n|$)/g,
+            (m, pre, fence, lang, code) => {
+                lang = (lang || '').trim().split(/\s+/)[0];
+                return pre + keep('<pre><code' + (lang ? ' class="language-' + escapeHtml(lang) + '"' : '') + '>'
+                    + escapeHtml(code.replace(/\n$/, '')) + '</code></pre>');
+            });
+
+        const lines = md.split('\n');
+        let html = mdBlocks(lines, stash);
+        return restoreUnique(stash, html).replace(/\n{3,}/g, '\n\n').trim();
+    }
+
+    function mdBlocks(lines, stash) {
+        const out = [];
+        let para = [];
+        const flushP = () => {
+            if (!para.length) return;
+            let t = para.join('\n').replace(/ {2,}\n/g, '\u0002')        // 行尾双空格 => <br>
+                .replace(/[ \t]+$/, '');
+            let h = mdInline(t, stash).replace(/\u0002/g, '<br>').replace(/\n/g, ' ');
+            out.push('<p>' + h + '</p>');
+            para = [];
+        };
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            let m;
+
+            // 预处理时留下的代码块占位
+            if ((m = line.match(/^\u0001S(\d+)\u0001$/))) { flushP(); out.push(stash[+m[1]]); continue; }
+            if (!line.trim()) { flushP(); continue; }
+
+            // ATX 标题
+            if ((m = line.match(/^ {0,3}(#{1,6})\s+(.*?)\s*#*\s*$/))) {
+                flushP();
+                const lv = m[1].length;
+                out.push('<h' + lv + '>' + mdInline(m[2], stash) + '</h' + lv + '>');
+                continue;
+            }
+            // 分隔线
+            if (/^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line)) { flushP(); out.push('<hr>'); continue; }
+            // 引用
+            if (/^ {0,3}>/.test(line)) {
+                flushP();
+                const q = [];
+                while (i < lines.length && /^ {0,3}>/.test(lines[i])) { q.push(lines[i].replace(/^ {0,3}>\s?/, '')); i++; }
+                i--;
+                out.push('<blockquote>\n' + mdBlocks(q, stash) + '\n</blockquote>');
+                continue;
+            }
+            // 列表
+            if (line.match(/^(\s*)([-*+]|\d+[.)])\s+/)) {
+                flushP();
+                const res = mdList(lines, i, stash);
+                out.push(res.html);
+                i = res.i - 1;
+                continue;
+            }
+            // 表格
+            if (line.indexOf('|') >= 0 && lines[i + 1] && /^\s*\|?[\s:|-]*-[\s:|-]*\|[\s:|-]*$/.test(lines[i + 1])) {
+                flushP();
+                const head = mdRow(lines[i]);
+                const aligns = mdRow(lines[i + 1]).map(c => {
+                    const l = c.charAt(0) === ':', r = c.charAt(c.length - 1) === ':';
+                    return l && r ? 'center' : r ? 'right' : l ? 'left' : '';
+                });
+                const body = [];
+                i += 2;
+                while (i < lines.length && lines[i].indexOf('|') >= 0 && lines[i].trim()) { body.push(mdRow(lines[i])); i++; }
+                i--;
+                const th = head.map((c, n) => '<th' + (aligns[n] ? ' style="text-align:' + aligns[n] + '"' : '') + '>' + mdInline(c, stash) + '</th>').join('');
+                const tb = body.map(r => '<tr>' + r.map((c, n) => '<td' + (aligns[n] ? ' style="text-align:' + aligns[n] + '"' : '') + '>' + mdInline(c, stash) + '</td>').join('') + '</tr>').join('\n');
+                out.push('<table>\n<thead>\n<tr>' + th + '</tr>\n</thead>\n<tbody>\n' + tb + '\n</tbody>\n</table>');
+                continue;
+            }
+            // Setext 标题
+            if (lines[i + 1] && /^ {0,3}(=+|-{2,})\s*$/.test(lines[i + 1]) && line.trim()) {
+                flushP();
+                const lv = /=/.test(lines[i + 1]) ? 1 : 2;
+                out.push('<h' + lv + '>' + mdInline(line.trim(), stash) + '</h' + lv + '>');
+                i++;
+                continue;
+            }
+            para.push(line);
+        }
+        flushP();
+        return out.join('\n');
+    }
+
+    function mdRow(line) {
+        return line.trim().replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map(c => c.trim());
+    }
+
+    function mdList(lines, start, stash) {
+        let i = start;
+        const stack = [];
+        let result = '';
+
+        const pop = () => {
+            const node = stack.pop();
+            const html = '<' + node.type + (node.start !== 1 ? ' start="' + node.start + '"' : '') + '>\n'
+                + node.items.map(x => '<li>' + x + '</li>').join('\n')
+                + '\n</' + node.type + '>';
+            if (stack.length) stack[stack.length - 1].items[stack[stack.length - 1].items.length - 1] += '\n' + html;
+            else result = html;
+        };
+
+        while (i < lines.length) {
+            const line = lines[i];
+            const m = line.match(/^(\s*)([-*+]|(\d+)[.)])\s+(.*)$/);
+            if (!m) {
+                // 缩进的续行：接到上一个列表项
+                if (line.trim() && /^\s{2,}/.test(line) && stack.length) {
+                    const top = stack[stack.length - 1];
+                    top.items[top.items.length - 1] += '<br>' + mdInline(line.trim(), stash);
+                    i++;
+                    continue;
+                }
+                break;
+            }
+            const indent = m[1].replace(/\t/g, '    ').length;
+            const type = m[3] !== undefined ? 'ol' : 'ul';
+            const num = m[3] !== undefined ? parseInt(m[3], 10) : 1;
+
+            while (stack.length && stack[stack.length - 1].indent > indent) pop();
+            const top = stack[stack.length - 1];
+            if (!top || top.indent < indent) {
+                stack.push({ type: type, indent: indent, items: [], start: num });
+            } else if (top.type !== type) {
+                pop();
+                stack.push({ type: type, indent: indent, items: [], start: num });
+            }
+
+            let content = m[4];
+            let task = '';
+            const tm = content.match(/^\[([ xX])\]\s+(.*)$/);
+            if (tm) {
+                task = '<input type="checkbox" disabled' + (tm[1] !== ' ' ? ' checked' : '') + '> ';
+                content = tm[2];
+            }
+            stack[stack.length - 1].items.push(task + mdInline(content, stash));
+            i++;
+        }
+        while (stack.length) pop();
+        return { html: result, i: i };
+    }
+
+    function mdInline(text, stash) {
+        if (text == null) return '';
+        let s = text;
+
+        // 行内代码优先保护
+        s = s.replace(/(`+)([\s\S]*?)\1(?!`)/g, (m, f, code) => {
+            const c = code.replace(/^ (.*) $/, '$1');
+            return protect(stash, '<code>' + escapeHtml(c) + '</code>');
+        });
+
+        s = escapeHtml(s);
+
+        // 图片 / 链接
+        s = s.replace(/!\[([^\]]*)\]\(\s*([^\s)]+(?:\([^)]*\))?)(?:\s+&quot;([\s\S]*?)&quot;)?\s*\)/g,
+            (m, alt, src, title) => protect(stash, '<img src="' + escapeHtml(unescapeHtmlEntities(src)) + '" alt="' + alt + '"'
+                + (title ? ' title="' + title + '"' : '') + '>'));
+        s = s.replace(/\[([^\]]*)\]\(\s*([^\s)]+(?:\([^)]*\))?)(?:\s+&quot;([\s\S]*?)&quot;)?\s*\)/g,
+            (m, txt, href, title) => protect(stash, '<a href="' + escapeHtml(unescapeHtmlEntities(href)) + '"'
+                + (title ? ' title="' + title + '"' : '') + '>' + txt + '</a>'));
+
+        // 自动链接
+        s = s.replace(/&lt;((?:https?:\/\/|mailto:)[^\s&]+)&gt;/g,
+            (m, url) => protect(stash, '<a href="' + unescapeHtmlEntities(url) + '">' + url + '</a>'));
+
+        // 强调
+        s = s.replace(/\*\*\*(\S(?:[\s\S]*?\S)?)\*\*\*/g, '<strong><em>$1</em></strong>');
+        s = s.replace(/\*\*(\S(?:[\s\S]*?\S)?)\*\*/g, '<strong>$1</strong>');
+        s = s.replace(/(?<![A-Za-z0-9_])__(\S(?:[\s\S]*?\S)?)__(?![A-Za-z0-9])/g, '<strong>$1</strong>');
+        s = s.replace(/(?<![A-Za-z0-9*])\*(\S(?:[\s\S]*?\S)?)\*(?![A-Za-z0-9*])/g, '<em>$1</em>');
+        s = s.replace(/(?<![A-Za-z0-9_])_(\S(?:[\s\S]*?\S)?)_(?![A-Za-z0-9_])/g, '<em>$1</em>');
+        s = s.replace(/~~(\S(?:[\s\S]*?\S)?)~~/g, '<del>$1</del>');
+
+        return s;
+    }
+
+    function unescapeHtmlEntities(s) {
+        return String(s).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+    }
+
+    /* =====================================================================
+     *  4. HTML → Markdown
+     * ===================================================================== */
+    function htmlToMd(html) {
+        const doc = new DOMParser().parseFromString('<body>' + html + '</body>', 'text/html');
+        let md = nodesToMd(doc.body);
+        return md.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/^\n+/, '').replace(/\s+$/, '') + '\n';
+    }
+
+    function nodesToMd(node) {
+        let md = '';
+        node.childNodes.forEach(n => { md += nodeToMd(n); });
+        return md;
+    }
+
+    function nodesToInline(node) {
+        let md = '';
+        node.childNodes.forEach(n => { md += nodeToMd(n, true); });
+        return md.replace(/\s*\n\s*/g, ' ').replace(/ {2,}/g, ' ');
+    }
+
+    function escMd(s) {
+        return String(s).replace(/([\\`*_\[\]<>|~#])/g, '\\$1');
+    }
+
+    function nodeToMd(node, inline) {
+        if (node.nodeType === 3) {
+            let t = node.nodeValue.replace(/&nbsp;/gi, ' ').replace(/\u00a0/g, ' ');
+            if (inline === true) return escMd(t);
+            const flat = t.replace(/\s+/g, ' ').trim();
+            return flat ? '\n' + escMd(flat) + '\n\n' : '';
+        }
+        if (node.nodeType !== 1) return '';
+
+        const name = node.nodeName.toLowerCase();
+        if (name === 'script' || name === 'style') return '';
+        if (name === 'br') return inline === true ? ' ' : '\n';
+        if (name === 'hr') return '\n\n---\n\n';
+
+        if (name === 'pre') {
+            const code = node.querySelector('code') || node;
+            const lang = (code.getAttribute('class') || '').match(/language-(\S+)/);
+            const txt = code.textContent.replace(/\n$/, '');
+            return '\n```' + (lang ? lang[1] : '') + '\n' + txt + '\n```\n\n';
+        }
+        if (/^h[1-6]$/.test(name)) {
+            const lv = parseInt(name.slice(1), 10);
+            return '\n' + '#'.repeat(lv) + ' ' + nodesToInline(node) + '\n\n';
+        }
+        if (name === 'p' || name === 'div' || name === 'section' || name === 'article') {
+            const c = nodesToInline(node);
+            return c ? '\n' + c + '\n\n' : '';
+        }
+        if (name === 'blockquote') {
+            const inner = nodesToInline(node).trim().split('\n').map(l => '> ' + l.trim()).join('\n');
+            return '\n' + inner + '\n\n';
+        }
+        if (name === 'ul' || name === 'ol') {
+            const items = [];
+            let idx = parseInt(node.getAttribute('start') || '1', 10);
+            Array.prototype.forEach.call(node.children, li => {
+                if (li.nodeName.toLowerCase() !== 'li') return;
+                let marker = (name === 'ol') ? (idx++) + '. ' : '- ';
+
+                // 任务列表：勾选框位于 li 首位时改写占位标记
+                const first = li.firstElementChild;
+                if (first && first.nodeName.toLowerCase() === 'input'
+                    && (first.getAttribute('type') || '').toLowerCase() === 'checkbox') {
+                    const checked = first.hasAttribute('checked') || first.checked === true;
+                    marker = '- [' + (checked ? 'x' : ' ') + '] ';
+                    li.removeChild(first);
+                }
+
+                const lines = [];
+                const inlinePart = liInlineText(li);
+                if (inlinePart) lines.push(marker + inlinePart);
+                const nested = liNestedLists(li);
+                if (nested) nested.split('\n').forEach(l => { if (l.trim()) lines.push('  ' + l.trim()); });
+                items.push(lines.length ? lines.join('\n') : marker.trim());
+            });
+            return '\n' + items.join('\n') + '\n\n';
+        }
+        if (name === 'table') {
+            const rows = Array.prototype.map.call(node.querySelectorAll('tr'), tr => {
+                const cells = Array.prototype.map.call(tr.children, td => {
+                    if (td.nodeName.toLowerCase() === 'td' || td.nodeName.toLowerCase() === 'th') {
+                        return nodesToInline(td).trim().replace(/\|/g, '\\|');
+                    }
+                    return '';
+                });
+                return { cells: cells, isHead: tr.querySelector(':scope > th') !== null };
+            }).filter(r => r.cells.length);
+            if (!rows.length) return '';
+            const col = Math.max.apply(null, rows.map(r => r.cells.length));
+            const headRow = rows[0].isHead ? rows.shift() : { cells: new Array(col).fill('') };
+            const pad = r => '| ' + Array.from({ length: col }, (x, i) => (r[i] || '')).join(' | ') + ' |';
+            const body = rows.filter(r => !r.isHead).map(r => pad(r.cells));
+            let out = '\n' + pad(headRow.cells) + '\n| ' + new Array(col).fill('---').join(' | ') + ' |\n';
+            if (body.length) out += body.join('\n') + '\n';
+            return out + '\n';
+        }
+        if (name === 'a') {
+            const txt = nodesToInline(node) || node.getAttribute('href') || '';
+            const href = node.getAttribute('href') || '';
+            const title = node.getAttribute('title');
+            return '[' + txt + '](' + href + (title ? ' "' + title + '"' : '') + ')';
+        }
+        if (name === 'img') {
+            const alt = node.getAttribute('alt') || '';
+            const src = node.getAttribute('src') || '';
+            const title = node.getAttribute('title');
+            return '![' + alt + '](' + src + (title ? ' "' + title + '"' : '') + ')';
+        }
+        if (name === 'code') return '`' + node.textContent.replace(/`/g, '\\`') + '`';
+        if (name === 'strong' || name === 'b') return '**' + nodesToInline(node) + '**';
+        if (name === 'em' || name === 'i') return '*' + nodesToInline(node) + '*';
+        if (name === 'del' || name === 's' || name === 'strike') return '~~' + nodesToInline(node) + '~~';
+        if (name === 'input') {
+            if ((node.getAttribute('type') || '').toLowerCase() === 'checkbox') return '[' + (node.checked ? 'x' : ' ') + '] ';
+            return '';
+        }
+
+        return nodesToMd(node);
+    }
+
+    // 列表项的正文（不含嵌套子列表）
+    function liInlineText(li) {
+        let md = '';
+        li.childNodes.forEach(n => {
+            const nm = n.nodeType === 1 ? n.nodeName.toLowerCase() : '';
+            if (nm === 'ul' || nm === 'ol') return;
+            md += nodeToMd(n, true);
+        });
+        return md.replace(/\s+/g, ' ').trim();
+    }
+
+    // 列表项内部的嵌套子列表
+    function liNestedLists(li) {
+        let md = '';
+        li.childNodes.forEach(n => {
+            const nm = n.nodeType === 1 ? n.nodeName.toLowerCase() : '';
+            if (nm === 'ul' || nm === 'ol') md += nodeToMd(n);
+        });
+        return md.trim();
+    }
+
+    /* =====================================================================
+     *  5. Paragraph Cleanup
+     * ===================================================================== */
+    function trimLineStart(t) {
+        return String(t)
+            .replace(/^([ \t\u3000\u00a0\u2002\u2003]+)/gm, '')
+            .replace(/^((?:&nbsp;|&#160;|&#xa0;)+)/gim, '');
+    }
+
+    function trimLineEnd(t) {
+        return String(t)
+            .replace(/([ \t\u3000\u00a0]+)$/gm, '')
+            .replace(/((?:&nbsp;|&#160;|&#xa0;)+)$/gim, '');
+    }
+
+    function mergeBlankLines(t) {
+        return String(t).replace(/[ \t]*\n[ \t]*/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/^\n+/, '');
+    }
+
+    function dropEmptyLines(t) {
+        return String(t).split(/\r?\n/).filter(l => l.trim() !== '').join('\n');
+    }
+
+    // 智能段落合并：按空行分段，段内换行按中英文智能拼接
+    function joinParagraphs(t) {
+        const isWord = c => /[A-Za-z0-9]/.test(c);
+        return String(t).split(/\n\s*\n/).map(para => {
+            const ls = para.split('\n').map(l => l.trim()).filter(l => l !== '');
+            let out = '';
+            ls.forEach((l, i) => {
+                if (i === 0) { out = l; return; }
+                const prev = out.charAt(out.length - 1);
+                const next = l.charAt(0);
+                out += (isWord(prev) && isWord(next)) ? ' ' + l : l;
+            });
+            return out;
+        }).join('\n\n');
+    }
+
+    // 按Punctuation断句换行
+    function sentencePerLine(t) {
+        return String(t)
+            .replace(/([。！？!?；;])\s*/g, '$1\n')
+            .replace(/\n{2,}/g, '\n')
+            .trim();
+    }
+
+    function dedupeLines(t) {
+        const seen = new Set();
+        return String(t).split(/\r?\n/).filter(l => {
+            const k = l.trim();
+            if (k !== '' && seen.has(k)) return false;
+            seen.add(k);
+            return true;
+        }).join('\n');
+    }
+
+    function sortLines(t, desc) {
+        const lines = String(t).split(/\r?\n/);
+        lines.sort((a, b) => desc ? b.localeCompare(a, 'zh-Hans-CN') : a.localeCompare(b, 'zh-Hans-CN'));
+        return lines.join('\n');
+    }
+
+    /* =====================================================================
+     *  6. CJK–Latin Typography
+     * ===================================================================== */
+    // 保护代码片段/URL/标签，避免在敏感区域插空格
+    function guardParts(t) {
+        const list = [];
+        let s = String(t);
+        s = s.replace(/`[\s\S]*?`/g, m => protect(list, m));
+        s = s.replace(/<[^>]+>/g, m => protect(list, m));
+        s = s.replace(/\b(?:https?|ftp):\/\/[^\s"'）)》】]+/g, m => protect(list, m));
+        s = s.replace(/\b[\w.+-]+@[\w-]+\.[\w.-]+/g, m => protect(list, m));
+        return { text: s, restore: txt => restoreUnique(list, txt) };
+    }
+
+    const CJK = '\\u4e00-\\u9fff\\u3400-\\u4dbf\\u3040-\\u30ff\\uf900-\\ufaff';
+
+    function addSpaceCJK(text) {
+        const g = guardParts(text);
+        let s = g.text;
+        s = s.replace(new RegExp('([' + CJK + '])([A-Za-z0-9@#])', 'g'), '$1 $2');
+        s = s.replace(new RegExp('([A-Za-z0-9%\\)\\]\\}])([' + CJK + '])', 'g'), '$1 $2');
+        s = g.restore(s).replace(/ {2,}/g, ' ');
+        return s;
+    }
+
+    function addSpaceAfterPunct(text) {
+        const g = guardParts(text);
+        let s = g.text
+            // 英文Punctuation后（下一字符不是空白/数字/Punctuation/右引号）补一个空格
+            .replace(/([,;:!?])(?=[^\s\d,;:!?.)\]\}）】》」』"'"'’”。])/g, '$1 ')
+            .replace(/(?<!\d)\.(?=[^\s\d,;:!?.)\]\}）】》」』"'"'’”。])/g, '. ');
+        s = g.restore(s).replace(/ {2,}/g, ' ');
+        return s;
+    }
+
+    const CN_PUNCT = { ',': '，', '.': '。', '?': '？', '!': '！', ':': '：', ';': '；', '(': '（', ')': '）', '[': '【', ']': '】', '<': '《', '>': '》' };
+    const EN_PUNCT = Object.keys(CN_PUNCT).reduce((o, k) => { o[CN_PUNCT[k]] = k; return o; }, {});
+    const RE_EN = new RegExp('[' + Object.keys(CN_PUNCT).join('').replace(/[.?*+^$|()[\]{}<>\\]/g, '\\$&') + ']', 'g');
+
+    function toCnPunct(text) {
+        const g = guardParts(text);
+        // 小数点、千分位分隔符不参与转换
+        let s = g.text.replace(RE_EN, (c, offset, str) => {
+            const betweenDigits = /\d/.test(str.charAt(offset - 1)) && /\d/.test(str.charAt(offset + 1));
+            if (betweenDigits && (c === '.' || c === ',')) return c;
+            return CN_PUNCT[c];
+        });
+        return g.restore(s);
+    }
+
+    function toEnPunct(text) {
+        const g = guardParts(text);
+        let s = g.text.replace(/[，。？！：；（）【】《》]/g, c => EN_PUNCT[c]);
+        return g.restore(s);
+    }
+
+    // 全角 <-> 半角
+    function toHalfWidth(text) {
+        let s = String(text);
+        s = s.replace(/[\uff01-\uff5e]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xfee0));
+        s = s.replace(/\u3000/g, ' ');
+        const extra = { '，': ',', '。': '.', '、': ',', '；': ';', '：': ':', '？': '?', '！': '!', '（': '(', '）': ')', '【': '[', '】': ']', '《': '<', '》': '>', '“': '"', '”': '"', '‘': "'", '’': "'", '—': '-', '～': '~' };
+        s = s.replace(/[，。、；：？！（）【】《》“”‘’—～]/g, c => extra[c]);
+        return s;
+    }
+
+    function toFullWidth(text) {
+        let s = String(text);
+        s = s.replace(/ /g, '\u3000');
+        s = s.replace(/[\u0021-\u007e]/g, c => String.fromCharCode(c.charCodeAt(0) + 0xfee0));
+        return s;
+    }
+
+    /* =====================================================================
+     *  7. General Conversion
+     * ===================================================================== */
+    function caseConvert(text, mode) {
+        const t = String(text);
+        switch (mode) {
+            case 'upper': return t.toUpperCase();
+            case 'lower': return t.toLowerCase();
+            case 'capital': return t.replace(/\b\w[\w'-]*/g, w => w.charAt(0).toUpperCase() + w.slice(1));
+            case 'sentence': return t.replace(/(^\s*|[.!?。！？]\s*)([^\s])/g, (m, p, c) => p + c.toUpperCase());
+            case 'toggle': return t.replace(/[A-Za-z]/g, c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase());
+            default: return t;
+        }
+    }
+
+    function htmlEntities(text, decode) {
+        if (decode) {
+            const el = document.createElement('textarea');
+            el.innerHTML = String(text);
+            return el.value;
+        }
+        return String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function urlCodec(text, decode) {
+        return decode ? decodeURIComponent(String(text)) : encodeURIComponent(String(text));
+    }
+
+    function b64Encode(text) {
+        const bytes = new TextEncoder().encode(String(text));
+        let bin = '';
+        const chunk = 0x8000;
+        for (let i = 0; i < bytes.length; i += chunk) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+        return btoa(bin);
+    }
+
+    function b64Decode(text) {
+        const bin = atob(String(text).replace(/\s+/g, ''));
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder().decode(bytes);
+    }
+
+    /* =====================================================================
+     *  工具面板定义
+     * ===================================================================== */
+    const SAMPLES = {
+        css: '/* 主色调 */\n.nav{  margin:0 auto;  padding:10px 20px;  background:#fff;}\n.nav a,.nav span{color:#333;text-decoration:none}\n.box{width:100px;height:100px}\n@media screen and (max-width:600px){.nav{padding:5px}}',
+        htmlmd: '<h2 class="title">标题</h2>\n<p>这是一段 <strong>加粗</strong> 与 <em>斜体</em> 的文字，包含<a href="https://example.com" title="示例">链接</a>。</p>\n<ul>\n    <li>第一项</li>\n    <li>第二项\n        <ul><li>子项 A</li><li>子项 B</li></ul>\n    </li>\n</ul>\n<blockquote><p>引用一句话。</p></blockquote>\n<pre><code class="language-js">const a = 1;</code></pre>\n<table><tr><th>名称</th><th>数量</th></tr><tr><td>苹果</td><td>3</td></tr></table>',
+        para: '　　这是一个首行缩进了两个全角空格的段落。\n　　这是第二行内容，后面有一些行尾空格   \n\n\n\n　　这是另一个段落 &nbsp;。\n　　这个段落重复了一行\n　　这个段落重复了一行',
+        typo: 'This is a mixed CJK-Latin line,text with English punctuation.com missing a space,and no space between中文andEnglish.\nprice is 1,200 dollars,thanks!the URL https://example.com/a?b=1&c=2 stays intact,code `foo(a,b)` stays intact too.',
+        common: '{ "name": "demo", "list": [1, 2, 3], "nested": { "ok": true } }\nHello World! 中文与 English 混排。\na && b < c'
+    };
+
+    const TOOLS = [
+        {
+            id: 'css', name: 'CSS Minify / Beautify', desc: 'Minify, multi-/single-line formatting, one-click restore',
+            sample: SAMPLES.css,
+            groups: [
+                {
+                    title: 'Minify & Format', items: [
+                        { label: 'CSS Minify', primary: true, fn: s => cssCompress(s) },
+                        { label: 'Format (multi-line)', fn: s => cssBeautify(s, 'multi') },
+                        { label: 'Format (single-line)', fn: s => cssBeautify(s, 'single') },
+                        { label: 'Restore original', restore: true }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'htmlmd', name: 'HTML ↔ Markdown', desc: 'Two-way conversion + HTML minify & beautify',
+            sample: SAMPLES.htmlmd,
+            groups: [
+                {
+                    title: 'Convert', items: [
+                        { label: 'HTML → Markdown', primary: true, fn: s => htmlToMd(s) },
+                        { label: 'Markdown → HTML', fn: s => mdToHtml(s) }
+                    ]
+                },
+                {
+                    title: 'HTML Processing', items: [
+                        { label: 'HTML Minify', fn: s => htmlMinify(s) },
+                        { label: 'HTML Beautify', fn: s => htmlBeautify(s) }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'para', name: 'Paragraph Cleanup', desc: 'Trim spaces, merge blank lines, split sentences, dedupe & sort',
+            sample: SAMPLES.para,
+            groups: [
+                {
+                    title: 'Whitespace', items: [
+                        { label: 'Trim leading spaces', primary: true, fn: s => trimLineStart(s) },
+                        { label: 'Trim trailing spaces', fn: s => trimLineEnd(s) },
+                        { label: 'Trim both ends', fn: s => trimLineEnd(trimLineStart(s)) }
+                    ]
+                },
+                {
+                    title: 'Paragraph Structure', items: [
+                        { label: 'Merge blank lines', fn: s => mergeBlankLines(s) },
+                        { label: 'Remove blank lines', fn: s => dropEmptyLines(s) },
+                        { label: 'Join paragraphs (smart)', fn: s => joinParagraphs(s) },
+                        { label: 'One sentence per line', fn: s => sentencePerLine(s) }
+                    ]
+                },
+                {
+                    title: 'Line Operations', items: [
+                        { label: 'Remove duplicate lines', fn: s => dedupeLines(s) },
+                        { label: 'Sort lines (A→Z)', fn: s => sortLines(s, false) },
+                        { label: 'Sort lines (Z→A)', fn: s => sortLines(s, true) }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'typo', name: 'CJK–Latin Typography', desc: 'CJK–Latin spacing, punctuation & full/half-width conversion',
+            sample: SAMPLES.typo,
+            groups: [
+                {
+                    title: 'Spacing', items: [
+                        { label: 'Space CJK & Latin', primary: true, fn: s => addSpaceCJK(s) },
+                        { label: 'Add space after punctuation', fn: s => addSpaceAfterPunct(s) },
+                        { label: 'Process all (spacing + punct)', fn: s => addSpaceCJK(addSpaceAfterPunct(s)) }
+                    ]
+                },
+                {
+                    title: 'Punctuation', items: [
+                        { label: 'EN punct → CN punct', fn: s => toCnPunct(s) },
+                        { label: 'CN punct → EN punct', fn: s => toEnPunct(s) }
+                    ]
+                },
+                {
+                    title: 'Full / Half Width', items: [
+                        { label: 'Full-width → Half-width', fn: s => toHalfWidth(s) },
+                        { label: 'Half-width → Full-width', fn: s => toFullWidth(s) }
+                    ]
+                },
+                {
+                    title: 'Letter Case', items: [
+                        { label: 'UPPERCASE', fn: s => caseConvert(s, 'upper') },
+                        { label: 'lowercase', fn: s => caseConvert(s, 'lower') },
+                        { label: 'Title Case', fn: s => caseConvert(s, 'capital') },
+                        { label: 'Sentence case', fn: s => caseConvert(s, 'sentence') },
+                        { label: 'iNVERSE cASE', fn: s => caseConvert(s, 'toggle') }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'common', name: 'General Conversion', desc: 'JSON beautify, HTML entities, URL & Base64 codecs',
+            sample: SAMPLES.common,
+            groups: [
+                {
+                    title: 'JSON', items: [
+                        { label: 'JSON Beautify', primary: true, fn: s => JSON.stringify(JSON.parse(s), null, 2) },
+                        { label: 'JSON Minify', fn: s => JSON.stringify(JSON.parse(s)) }
+                    ]
+                },
+                {
+                    title: 'HTML Entities', items: [
+                        { label: 'Escape entities', fn: s => htmlEntities(s, false) },
+                        { label: 'Unescape entities', fn: s => htmlEntities(s, true) }
+                    ]
+                },
+                {
+                    title: 'URL / Base64', items: [
+                        { label: 'URL encode', fn: s => urlCodec(s, false) },
+                        { label: 'URL decode', fn: s => urlCodec(s, true) },
+                        { label: 'Base64 encode', fn: s => b64Encode(s) },
+                        { label: 'Base64 decode', fn: s => b64Decode(s) }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    /* =====================================================================
+     *  界面逻辑
+     * ===================================================================== */
+    const state = { tool: TOOLS[0].id, snapshot: null };
+    let currentTool = TOOLS[0];
+
+    function currentToolObj() {
+        return TOOLS.filter(t => t.id === state.tool)[0] || TOOLS[0];
+    }
+
+    // 渲染侧边导航
+    function renderTabs() {
+        const box = $('tabs');
+        box.innerHTML = '<div class="side-title">Categories</div>';
+        TOOLS.forEach((t, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'tab' + (t.id === state.tool ? ' active' : '');
+            btn.innerHTML = '<span class="idx">' + (i + 1) + '</span><span>' + t.name + '</span>';
+            btn.onclick = () => { state.tool = t.id; renderAll(); syncHash(t.id); };
+            box.appendChild(btn);
+        });
+    }
+
+    // 渲染操作按钮
+    function renderActions() {
+        const box = $('actions');
+        box.innerHTML = '';
+        currentTool = currentToolObj();
+        $('toolName').textContent = currentTool.name;
+        $('toolDesc').textContent = currentTool.desc;
+
+        currentTool.groups.forEach(g => {
+            const wrap = document.createElement('div');
+            wrap.className = 'group';
+            const title = document.createElement('div');
+            title.className = 'group-title';
+            title.textContent = g.title;
+            wrap.appendChild(title);
+
+            const items = document.createElement('div');
+            items.className = 'group-items';
+            g.items.forEach(it => {
+                const btn = document.createElement('button');
+                btn.className = 'btn' + (it.primary ? ' primary' : '');
+                btn.textContent = it.label;
+                btn.onclick = () => execute(it);
+                items.appendChild(btn);
+            });
+            wrap.appendChild(items);
+            box.appendChild(wrap);
+        });
+    }
+
+    function firstAction() {
+        const it = currentTool.groups[0].items[0];
+        return it;
+    }
+
+    function execute(item) {
+        const src = inputEl.value;
+        try {
+            let result;
+            if (item.restore) {
+                result = state.snapshot === null ? src : state.snapshot;
+                outputEl.value = result;
+                inputEl.value = result;
+                state.snapshot = result;
+            } else {
+                if (state.snapshot === null) state.snapshot = src;
+                result = item.fn(src);
+                outputEl.value = (result === null || result === undefined) ? '' : String(result);
+            }
+            toast(item.label + ' done');
+        } catch (err) {
+            outputEl.value = 'Failed: ' + (err && err.message ? err.message : String(err));
+            toast('Processing error — please check the input');
+        }
+        updateCounts();
+    }
+
+    function updateCounts() {
+        const cnt = s => {
+            const t = String(s);
+            return t.length + ' chars · ' + (t === '' ? 0 : t.split('\n').length) + ' lines';
+        };
+        $('inCount').textContent = cnt(inputEl.value);
+        $('outCount').textContent = cnt(outputEl.value);
+    }
+
+    let toastTimer = null;
+    function toast(msg) {
+        const el = $('toast');
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('show'), 1600);
+    }
+
+    function copyText(el) {
+        const text = el.value;
+        if (!text) { toast('Nothing to copy'); return; }
+        const done = () => toast('Copied to clipboard');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(el, done));
+        } else {
+            fallbackCopy(el, done);
+        }
+    }
+
+    function fallbackCopy(el, done) {
+        el.select();
+        try {
+            document.execCommand('copy');
+            done();
+        } catch (e) {
+            toast('Copy failed — press Ctrl+C manually');
+        }
+        window.getSelection().removeAllRanges();
+        el.blur();
+    }
+
+    function downloadResult() {
+        if (!outputEl.value) { toast('Nothing to download'); return; }
+        const blob = new Blob([outputEl.value], { type: 'text/plain;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = state.tool + '-result.txt';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast('File exported');
+    }
+
+    function renderAll() {
+        renderTabs();
+        renderActions();
+        updateCounts();
+    }
+
+    /* ------------------ 事件绑定 ------------------ */
+    $('sampleBtn').onclick = () => { inputEl.value = currentToolObj().sample; state.snapshot = null; updateCounts(); toast('Sample loaded'); };
+    $('swapBtn').onclick = () => { inputEl.value = outputEl.value; state.snapshot = null; updateCounts(); };
+    $('clearIn').onclick = () => { inputEl.value = ''; state.snapshot = null; updateCounts(); };
+    $('copyBtn').onclick = () => copyText(outputEl);
+    $('downBtn').onclick = downloadResult;
+    $('pasteBtn').onclick = async () => {
+        try {
+            const txt = await navigator.clipboard.readText();
+            inputEl.value = txt;
+            state.snapshot = null;
+            updateCounts();
+            toast('Pasted');
+        } catch (e) {
+            inputEl.focus();
+            toast('Press Ctrl+V to paste manually');
+        }
+    };
+
+    inputEl.addEventListener('input', () => { state.snapshot = null; updateCounts(); });
+
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            e.preventDefault();
+            const it = currentTool.groups[0].items.filter(x => !x.restore)[0] || currentTool.groups[0].items[0];
+            execute(it);
+        }
+    });
+
+    const themeBtn = $('themeBtn');
+    let dark = false;
+    try { dark = localStorage.getItem('tf-theme') === 'dark'; } catch (e) { }
+    const applyTheme = () => {
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        themeBtn.textContent = dark ? 'Light mode' : 'Dark mode';
+        try { localStorage.setItem('tf-theme', dark ? 'dark' : 'light'); } catch (e) { }
+    };
+    themeBtn.onclick = () => { dark = !dark; applyTheme(); };
+    applyTheme();
+
+    renderAll();
+
+    /* =================================================================
+     *  SEO 增强：URL 锚点直达具体功能（可被搜索引擎与 AI 作为深链引用）
+     *  例如 /#typo 直接打开「CJK–Latin Typography」，/#faq 跳到FAQ
+     * ================================================================= */
+    function syncHash(id) {
+        try { history.replaceState(null, '', '#' + id); } catch (e) { }
+    }
+    const TOOL_IDS = TOOLS.map(t => t.id);
+    function loadHash() {
+        const h = decodeURIComponent((location.hash || '').replace('#', ''));
+        if (TOOL_IDS.indexOf(h) >= 0 && h !== state.tool) { state.tool = h; renderAll(); }
+    }
+    window.addEventListener('hashchange', loadHash);
+    loadHash();
+
+    /* 首次访问无锚点时补一个，便于分享当前工具 */
+    if (!location.hash) syncHash(state.tool);
+
+    /* 离线可用：注册 Service Worker（本地 file:// 打开时自动跳过） */
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('../sw.js').catch(() => { });
+        });
+    }
+</script>
+<!-- ==================== 结构化数据：SEO + GEO（搜索引擎与 AI 摘要的引用源） ==================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://woxiaofa.github.io/tool/en/#website",
+      "url": "https://woxiaofa.github.io/tool/en/",
+      "name": "Text Formatter Toolbox",
+      "alternateName": ["Text Formatter Toolbox", "Online Text Formatter", "CSS Minifier", "Markdown Converter"],
+      "description": "A free, open-source, pure front-end online text toolkit: CSS/HTML minify & beautify, Markdown & HTML conversion, paragraph cleanup, CJK-Latin typography and codecs.",
+      "inLanguage": "en",
+      "license": "https://opensource.org/licenses/MIT",
+      "publisher": { "@id": "https://woxiaofa.github.io/tool/en/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://woxiaofa.github.io/tool/en/#webpage",
+      "url": "https://woxiaofa.github.io/tool/en/",
+      "name": "CSS Minifier · Markdown Converter · CJK Typography | Text Formatter Toolbox",
+      "isPartOf": { "@id": "https://woxiaofa.github.io/tool/en/#website" },
+      "description": "Free online text formatter toolbox with 5 categories and 30+ one-click actions. Runs entirely in your browser — nothing is uploaded.",
+      "inLanguage": "en",
+      "dateModified": "2026-09-20",
+      "primaryImageOfPage": "https://woxiaofa.github.io/tool/og-image.png",
+      "breadcrumb": { "@id": "https://woxiaofa.github.io/tool/en/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://woxiaofa.github.io/tool/en/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://woxiaofa.github.io/tool/" },
+        { "@type": "ListItem", "position": 2, "name": "Text Formatter Toolbox", "item": "https://woxiaofa.github.io/tool/en/" }
+      ]
+    },
+    {
+      "@type": ["SoftwareApplication", "WebApplication"],
+      "@id": "https://woxiaofa.github.io/tool/en/#app",
+      "name": "Text Formatter Toolbox",
+      "url": "https://woxiaofa.github.io/tool/en/",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Text Formatter / Code Beautifier",
+      "operatingSystem": "Any (Web Browser)",
+      "browserRequirements": "Requires JavaScript. No plugins needed.",
+      "softwareVersion": "1.0.0",
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "description": "Text Formatter Toolbox is a free, pure front-end online text toolkit offering CSS/HTML minify and beautify, Markdown-HTML conversion, paragraph cleanup, CJK-Latin spacing, punctuation full/half-width conversion, and URL/Base64/JSON codecs. All processing happens locally in the browser — nothing is uploaded.",
+      "featureList": [
+        "CSS minify", "CSS beautify (multi-line / single-line)", "HTML minify", "HTML beautify",
+        "Markdown to HTML", "HTML to Markdown", "JSON beautify & minify",
+        "Paragraph & blank-line cleanup", "Dedupe & sort lines", "Auto space between CJK and Latin",
+        "Chinese & English punctuation conversion", "Full-width / half-width conversion", "Letter case conversion",
+        "HTML entity escape / unescape", "URL encode / decode", "Base64 encode / decode (UTF-8)"
+      ],
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "publisher": { "@type": "Person", "name": "wxf_m" },
+      "codeRepository": "https://github.com/woxiaofa/tool",
+      "license": "https://opensource.org/licenses/MIT",
+      "privacyPolicyURL": "https://woxiaofa.github.io/tool/en/#privacy"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://woxiaofa.github.io/tool/en/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this text formatter free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — completely free and open source under the MIT license. No usage limits, no sign-up, no watermark." } },
+        { "@type": "Question", "name": "Is my text uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every conversion runs locally in your browser with JavaScript. The page makes no network requests, works offline, and can be installed as a local app." } },
+        { "@type": "Question", "name": "Will CSS minification break my styles?", "acceptedAnswer": { "@type": "Answer", "text": "Strings, comments and URLs are protected before whitespace removal, so spaces inside content strings are preserved. A Restore-original button rolls back anytime." } },
+        { "@type": "Question", "name": "Which Markdown syntax is supported?", "acceptedAnswer": { "@type": "Answer", "text": "ATX and Setext headings, ordered/unordered/nested lists, task lists, fenced code blocks, blockquotes, horizontal rules, tables with alignment, images, links, autolinks, bold, italic, strikethrough and inline code." } },
+        { "@type": "Question", "name": "Why add spaces between Chinese and English?", "acceptedAnswer": { "@type": "Answer", "text": "Mixed CJK-Latin text reads better with a gap between Han characters and Latin letters or digits — a widely recommended Chinese typesetting convention. URLs, emails, code blocks and HTML tags are protected." } },
+        { "@type": "Question", "name": "Can I convert Chinese punctuation to English punctuation in bulk?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, both directions are provided, covering commas, periods, question and exclamation marks, colons, semicolons and brackets, while skipping decimal points and thousands separators." } },
+        { "@type": "Question", "name": "Does Base64 support Chinese characters?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Text is UTF-8 encoded before Base64 and decoded back as UTF-8, so Chinese never turns into mojibake." } },
+        { "@type": "Question", "name": "Does it work on mobile? Any shortcuts?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the layout is responsive. Desktop shortcut: Ctrl + Enter (macOS: Command + Enter) runs the first action of the current tool." } },
+        { "@type": "Question", "name": "Can I use it offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The whole toolbox is a single index.html with no external dependencies — save it and open locally, or install it to your home screen." } }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://woxiaofa.github.io/tool/en/#howto",
+      "name": "How to format text with Text Formatter Toolbox",
+      "description": "Three steps: paste text, pick an action, copy the result.",
+      "totalTime": "PT1M",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Paste text", "text": "Paste your text into the Input box, or click Load sample." },
+        { "@type": "HowToStep", "position": 2, "name": "Pick an action", "text": "Switch categories on the left and click a button, or press Ctrl + Enter." },
+        { "@type": "HowToStep", "position": 3, "name": "Copy the result", "text": "Click Copy result, or feed the result back as input to chain another action." }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://woxiaofa.github.io/tool/en/#tools",
+      "name": "Tool categories",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "CSS Minify / Beautify", "url": "https://woxiaofa.github.io/tool/en/#css" },
+        { "@type": "ListItem", "position": 2, "name": "HTML <-> Markdown", "url": "https://woxiaofa.github.io/tool/en/#htmlmd" },
+        { "@type": "ListItem", "position": 3, "name": "Paragraph Cleanup", "url": "https://woxiaofa.github.io/tool/en/#para" },
+        { "@type": "ListItem", "position": 4, "name": "CJK-Latin Typography", "url": "https://woxiaofa.github.io/tool/en/#typo" },
+        { "@type": "ListItem", "position": 5, "name": "General Conversion (JSON / URL / Base64)", "url": "https://woxiaofa.github.io/tool/en/#common" }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+
+</html>

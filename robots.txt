@@ -1,0 +1,77 @@
+# =====================================================================
+#  文本格式化工具箱 — robots.txt
+#  策略：纯静态单页工具，全部内容开放抓取（含生成式搜索引擎 / AI 爬虫）
+#  上线后请把下面的 woxiaofa 换成你的 GitHub 用户名
+# =====================================================================
+
+# ---------- 默认：允许一切 ----------
+User-agent: *
+Allow: /
+Allow: /llms.txt
+
+# 无需要隐藏的目录；若将来放私有草稿，可在此 Disallow
+
+# ---------- 中文搜索引擎 ----------
+User-agent: Baiduspider
+Allow: /
+User-agent: Baiduspider-image
+Allow: /
+User-agent: Baiduspider-render
+Allow: /
+User-agent: Sogou web spider
+Allow: /
+User-agent: Sogou inst spider
+Allow: /
+User-agent: 360Spider
+Allow: /
+User-agent: Bytespider
+Allow: /
+
+# ---------- 英文搜索引擎 ----------
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: DuckDuckBot
+Allow: /favicon.svg
+User-agent: YandexBot
+Allow: /
+
+# ---------- 生成式搜索引擎 / AI 助手（GEO 的关键：显式放开） ----------
+# 说明：这些爬虫的抓取结果决定了 ChatGPT / Claude / Perplexity
+#       等 AI 在回答时能否引用你的工具。想被 AI 推荐就保持 Allow；
+#       若不想被抓取，把对应分组改成 Disallow: / 即可。
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: YouBot
+Allow: /
+User-agent: cohere-ai
+Allow: /
+User-agent: Diffbot
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://woxiaofa.github.io/tool/sitemap.xml

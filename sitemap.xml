@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  文本格式化工具箱 — 站点地图（中文版 + 英文版）
+  上线后请把 woxiaofa 换成你的 GitHub 用户名，并在
+  Google Search Console / 百度站长平台提交本站地址。
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://woxiaofa.github.io/tool/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://woxiaofa.github.io/tool/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://woxiaofa.github.io/tool/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://woxiaofa.github.io/tool/"/>
+  </url>
+
+  <url>
+    <loc>https://woxiaofa.github.io/tool/en/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://woxiaofa.github.io/tool/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://woxiaofa.github.io/tool/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://woxiaofa.github.io/tool/"/>
+  </url>
+
+  <!-- 给 AI / 大模型的纯文本说明页，允许单独索引 -->
+  <url>
+    <loc>https://woxiaofa.github.io/tool/llms.txt</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

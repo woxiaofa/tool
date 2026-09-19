@@ -1,0 +1,6 @@
+# GitHub Sponsors 按钮（FUNDING.yml）
+# 说明：
+#  - github: 需要你已加入 GitHub Sponsors 计划（Settings → Sponsors），未加入就删掉这一行
+#  - custom: 任意自定义链接，这里直接指向页面的「赞助支持」区块（含支付宝收款码）
+custom: ['https://woxiaofa.github.io/tool/#sponsor']
+# github: woxiaofa

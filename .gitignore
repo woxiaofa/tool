@@ -1,0 +1,24 @@
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.vscode/
+.idea/
+
+# 日志与临时文件
+*.log
+*.tmp
+npm-debug.log*
+
+# 依赖（本项目默认零依赖，仅为可能的本地预览工具保留）
+node_modules/
+
+# 构建产物（本项目为纯静态，通常无需构建）
+dist/
+build/
+
+# 本地环境与密钥
+.env
+.env.*
