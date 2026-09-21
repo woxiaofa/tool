@@ -545,7 +545,7 @@
     <article class="card seo-card" id="features">
         <h2>Features: 5 categories of text tools</h2>
         <div class="feature-grid">
-            <section class="feature-card" id="css">
+            <section class="feature-card" id="sec-css">
                 <h3>1. CSS Minify / Beautify</h3>
                 <p>Expand one-line stylesheets into readable form, or strip all whitespace for production.</p>
                 <ul>
@@ -555,7 +555,7 @@
                     <li>Restore original anytime</li>
                 </ul>
             </section>
-            <section class="feature-card" id="htmlmd">
+            <section class="feature-card" id="sec-htmlmd">
                 <h3>2. HTML &harr; Markdown</h3>
                 <p>Switch between writing documents and writing web pages, keeping headings, lists and tables.</p>
                 <ul>
@@ -565,7 +565,7 @@
                     <li>Code blocks, tables, task lists supported</li>
                 </ul>
             </section>
-            <section class="feature-card" id="para">
+            <section class="feature-card" id="sec-para">
                 <h3>3. Paragraph Cleanup</h3>
                 <p>Fix messy text copied from Word, PDF or web pages.</p>
                 <ul>
@@ -575,7 +575,7 @@
                     <li>One sentence per line, dedupe, sort lines</li>
                 </ul>
             </section>
-            <section class="feature-card" id="typo">
+            <section class="feature-card" id="sec-typo">
                 <h3>4. CJK&ndash;Latin Typography</h3>
                 <p>Solve the most common Chinese-English mixed-text typesetting issues.</p>
                 <ul>
@@ -586,7 +586,7 @@
                     <li>Letter case: UPPER / lower / Title / Sentence / iNVERSE</li>
                 </ul>
             </section>
-            <section class="feature-card" id="common">
+            <section class="feature-card" id="sec-common">
                 <h3>5. General Conversion</h3>
                 <p>Everyday encoding and escaping utilities for developers and writers.</p>
                 <ul>
@@ -1762,12 +1762,34 @@
         try { history.replaceState(null, '', '#' + id); } catch (e) { }
     }
     const TOOL_IDS = TOOLS.map(t => t.id);
-    function loadHash() {
-        const h = decodeURIComponent((location.hash || '').replace('#', ''));
-        if (TOOL_IDS.indexOf(h) >= 0 && h !== state.tool) { state.tool = h; renderAll(); }
+
+    /* 回到页面顶部的工具区：#css 这类锚点代表「打开某个工具」，不是下方的功能说明 */
+    function scrollToTool() {
+        const el = $('tools');
+        const y = el ? Math.max(el.getBoundingClientRect().top + window.pageYOffset - 12, 0) : 0;
+        try { window.scrollTo({ top: y, behavior: 'smooth' }); }
+        catch (e) { window.scrollTo(0, y); }
     }
-    window.addEventListener('hashchange', loadHash);
-    loadHash();
+    function loadHash(isInitial) {
+        const h = decodeURIComponent((location.hash || '').replace('#', ''));
+        if (TOOL_IDS.indexOf(h) < 0) return;          /* 非工具锚点（#faq 等）交给浏览器原生定位 */
+        if (h !== state.tool) { state.tool = h; renderAll(); }
+        requestAnimationFrame(function () { if (isInitial) window.scrollTo(0, 0); else scrollToTool(); });
+    }
+    window.addEventListener('hashchange', function () { loadHash(false); });
+    loadHash(true);
+
+    /* 下方快捷入口：切到对应工具并回到工具区，而不是停在页面底部的说明文字 */
+    document.addEventListener('click', function (e) {
+        const a = e.target && e.target.closest ? e.target.closest('a.chip[href^="#"]') : null;
+        if (!a) return;
+        const id = decodeURIComponent(a.getAttribute('href').slice(1));
+        if (TOOL_IDS.indexOf(id) < 0) return;
+        e.preventDefault();
+        if (id !== state.tool) { state.tool = id; renderAll(); }
+        syncHash(id);
+        scrollToTool();
+    });
 
     /* 首次访问无锚点时补一个，便于分享当前工具 */
     if (!location.hash) syncHash(state.tool);

@@ -542,7 +542,7 @@
     <article class="card seo-card" id="features">
         <h2>功能一览：5 大类文本处理工具</h2>
         <div class="feature-grid">
-            <section class="feature-card" id="css">
+            <section class="feature-card" id="sec-css">
                 <h3>1. CSS 压缩 / 美化</h3>
                 <p>把一行到底的样式表展开成可读格式，或压掉所有空白上线。</p>
                 <ul>
@@ -552,7 +552,7 @@
                     <li>还原原始内容，随时回退</li>
                 </ul>
             </section>
-            <section class="feature-card" id="htmlmd">
+            <section class="feature-card" id="sec-htmlmd">
                 <h3>2. HTML ↔ Markdown 互转</h3>
                 <p>写文档和写网页之间来回切换，保留标题、列表、表格结构。</p>
                 <ul>
@@ -562,7 +562,7 @@
                     <li>代码块、表格、任务列表均支持</li>
                 </ul>
             </section>
-            <section class="feature-card" id="para">
+            <section class="feature-card" id="sec-para">
                 <h3>3. 段落整理</h3>
                 <p>处理从 Word、PDF、网页复制过来的脏文本。</p>
                 <ul>
@@ -572,7 +572,7 @@
                     <li>按标点一句一行、去除重复行、行排序</li>
                 </ul>
             </section>
-            <section class="feature-card" id="typo">
+            <section class="feature-card" id="sec-typo">
                 <h3>4. 中英排版</h3>
                 <p>解决中英文混排最常见的排印问题。</p>
                 <ul>
@@ -583,7 +583,7 @@
                     <li>英文大小写：全大写 / 全小写 / 首字母 / 句首 / 互换</li>
                 </ul>
             </section>
-            <section class="feature-card" id="common">
+            <section class="feature-card" id="sec-common">
                 <h3>5. 通用转换</h3>
                 <p>开发和写作都常用的编码、转义处理。</p>
                 <ul>
@@ -1761,12 +1761,34 @@
         try { history.replaceState(null, '', '#' + id); } catch (e) { }
     }
     const TOOL_IDS = TOOLS.map(t => t.id);
-    function loadHash() {
-        const h = decodeURIComponent((location.hash || '').replace('#', ''));
-        if (TOOL_IDS.indexOf(h) >= 0 && h !== state.tool) { state.tool = h; renderAll(); }
+
+    /* 回到页面顶部的工具区：#css 这类锚点代表「打开某个工具」，不是下方的功能说明 */
+    function scrollToTool() {
+        const el = $('tools');
+        const y = el ? Math.max(el.getBoundingClientRect().top + window.pageYOffset - 12, 0) : 0;
+        try { window.scrollTo({ top: y, behavior: 'smooth' }); }
+        catch (e) { window.scrollTo(0, y); }
     }
-    window.addEventListener('hashchange', loadHash);
-    loadHash();
+    function loadHash(isInitial) {
+        const h = decodeURIComponent((location.hash || '').replace('#', ''));
+        if (TOOL_IDS.indexOf(h) < 0) return;          /* 非工具锚点（#faq 等）交给浏览器原生定位 */
+        if (h !== state.tool) { state.tool = h; renderAll(); }
+        requestAnimationFrame(function () { if (isInitial) window.scrollTo(0, 0); else scrollToTool(); });
+    }
+    window.addEventListener('hashchange', function () { loadHash(false); });
+    loadHash(true);
+
+    /* 下方快捷入口：切到对应工具并回到工具区，而不是停在页面底部的说明文字 */
+    document.addEventListener('click', function (e) {
+        const a = e.target && e.target.closest ? e.target.closest('a.chip[href^="#"]') : null;
+        if (!a) return;
+        const id = decodeURIComponent(a.getAttribute('href').slice(1));
+        if (TOOL_IDS.indexOf(id) < 0) return;
+        e.preventDefault();
+        if (id !== state.tool) { state.tool = id; renderAll(); }
+        syncHash(id);
+        scrollToTool();
+    });
 
     /* 首次访问无锚点时补一个，便于分享当前工具 */
     if (!location.hash) syncHash(state.tool);
