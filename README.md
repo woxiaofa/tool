@@ -9,10 +9,10 @@ CSS/HTML minify & beautify, Markdown ↔ HTML conversion, paragraph cleanup, CJK
 
 在线使用 · Live Demo: **https://woxiaofa.github.io/tool/** · English: **[/en/](https://woxiaofa.github.io/tool/en/)**
 
-> ☕ 如果这个工具帮到了你，欢迎[赞助支持（支付宝扫码）](https://woxiaofa.github.io/tool/#sponsor) /
-> If this tool helps you, consider [supporting the author](https://woxiaofa.github.io/tool/en/#sponsor).
+> ☕ 如果这个工具帮到了你，欢迎[赞助支持](#-赞助支持--sponsor) /
+> If this tool helps you, consider [supporting the author](#-赞助支持--sponsor).
 >
-> <img src="assets/alipay-qr.jpg" alt="支付宝收款码 / Alipay QR code" width="160">
+> <img src="assets/alipay-qr.jpg" alt="支付宝 / Alipay" width="120"> <img src="assets/wechat-qr.jpg" alt="微信 / WeChat Pay" width="120">
 
 [![GitHub License](https://img.shields.io/github/license/woxiaofa/tool?style=flat-square)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/woxiaofa/tool?style=flat-square)](https://github.com/woxiaofa/tool/stargazers)
